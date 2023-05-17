@@ -86,7 +86,7 @@ func (conn *cloudwatchLogsInsightsConn) QueryContext(ctx context.Context, query 
 				return nil, fmt.Errorf("end_time must be time.Time or string")
 			}
 		case "log_group_name":
-			logGroupNames = []string{arg.Value.(string)}
+			logGroupNames = append(logGroupNames, arg.Value.(string))
 		case "log_group_names":
 			logGroupNames = strings.Split(arg.Value.(string), ",")
 		case "limit":
