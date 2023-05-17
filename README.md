@@ -33,7 +33,8 @@ func main() {
 	rows, err := db.QueryContext(
 		context.Background(),
 		`fields @timestamp, @message | limit 10`,
-        sql.Named("log_group_names", "test-log-group,test-log-group-2"),
+		sql.Named("log_group_name", "test-log-group"),
+		sql.Named("log_group_name", "test-log-group-2"),
 		sql.Named("start_time", "2020-01-01T00:00:00+09:00"),
 		sql.Named("end_time", "2020-01-01T23:59:59+09:00"),
 	)
