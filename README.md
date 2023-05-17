@@ -54,6 +54,10 @@ func main() {
 }
 ```
 
+log_group_name can also be specified as `cloudwatch://?log_group_name=test-log-group&timeout=1m`.
+This is the default log group if it is not specified as a parameter at the time of query execution.
+If `start_time` and `end_time` are not specified, the last 15 minutes will be queried.
+
 ## LICENSE
 
 MIT
