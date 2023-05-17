@@ -204,7 +204,7 @@ func TestQueryRowContext__WithMock__SuccessCaseWithNamedParameter(t *testing.T) 
 			}, nil
 		},
 	}
-	db, err := sql.Open("cloudwatch-logs-insights", "cloudwatch://?mock=success_case_with_named_parameter")
+	db, err := sql.Open("cloudwatch-logs-insights", "cloudwatch://?mock=success_case_with_named_parameter&log_group_name=ignored")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -212,7 +212,8 @@ func TestQueryRowContext__WithMock__SuccessCaseWithNamedParameter(t *testing.T) 
 	ctx := context.Background()
 	row := db.QueryRowContext(
 		ctx, "fields @timestamp, @message | limit 1",
-		sql.Named("log_group_names", "test-log-group,test-log-group-2"),
+		sql.Named("log_group_name", "test-log-group"),
+		sql.Named("log_group_name", "test-log-group-2"),
 		sql.Named("start_time", "2020-01-01T00:00:00+09:00"),
 		sql.Named("end_time", "2020-01-01T23:59:59+09:00"),
 	)
