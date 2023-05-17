@@ -204,7 +204,7 @@ func TestQueryRowContext__WithMock__SuccessCaseWithNamedParameter(t *testing.T) 
 			}, nil
 		},
 	}
-	db, err := sql.Open("cloudwatch-logs-insights", "cloudwatch://?mock=success_case_with_named_parameter")
+	db, err := sql.Open("cloudwatch-logs-insights", "cloudwatch://?mock=success_case_with_named_parameter&log_group_name=ignored")
 	if err != nil {
 		t.Fatal(err)
 	}

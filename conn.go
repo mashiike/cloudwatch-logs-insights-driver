@@ -55,7 +55,7 @@ func (conn *cloudwatchLogsInsightsConn) Begin() (driver.Tx, error) {
 func (conn *cloudwatchLogsInsightsConn) QueryContext(ctx context.Context, query string, args []driver.NamedValue) (driver.Rows, error) {
 	endTime := time.Now()
 	startTime := endTime.Add(-15 * time.Minute)
-	logGroupNames := conn.cfg.LogGroupNames
+	var logGroupNames []string
 	limit := conn.cfg.Limit
 	var logGroupName *string
 	var err error
@@ -94,7 +94,10 @@ func (conn *cloudwatchLogsInsightsConn) QueryContext(ctx context.Context, query 
 		}
 	}
 	if len(logGroupNames) == 0 {
-		return nil, fmt.Errorf("log_group_name is required")
+		if len(conn.cfg.LogGroupNames) == 0 {
+			return nil, fmt.Errorf("log_group_name is required")
+		}
+		logGroupNames = conn.cfg.LogGroupNames
 	}
 	if len(logGroupNames) == 1 {
 		logGroupName = aws.String(logGroupNames[0])
