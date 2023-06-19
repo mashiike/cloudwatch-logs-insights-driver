@@ -3,7 +3,7 @@ module github.com/mashiike/cloudwatch-logs-insights-driver
 go 1.18
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.18.0
+	github.com/aws/aws-sdk-go-v2 v1.18.1
 	github.com/aws/aws-sdk-go-v2/config v1.18.25
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.20.11
 )
