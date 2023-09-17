@@ -131,5 +131,5 @@ func (cfg *CloudwatchLogsInsightsConfig) String() string {
 			values.Set("log_group_names", strings.Join(cfg.LogGroupNames, ","))
 		}
 	}
-	return "cloudwatch://" + values.Encode()
+	return "cloudwatch://?" + values.Encode()
 }
