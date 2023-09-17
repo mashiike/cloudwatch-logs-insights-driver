@@ -88,7 +88,14 @@ func (conn *cloudwatchLogsInsightsConn) QueryContext(ctx context.Context, query 
 		case "log_group_name":
 			logGroupNames = append(logGroupNames, arg.Value.(string))
 		case "log_group_names":
-			logGroupNames = strings.Split(arg.Value.(string), ",")
+			switch v := arg.Value.(type) {
+			case []string:
+				logGroupNames = append(logGroupNames, v...)
+			case string:
+				logGroupNames = append(logGroupNames, strings.Split(v, ",")...)
+			default:
+				return nil, fmt.Errorf("log_group_names must be []string or string")
+			}
 		case "limit":
 			limit = aws.Int32(int32(arg.Value.(int)))
 		}
