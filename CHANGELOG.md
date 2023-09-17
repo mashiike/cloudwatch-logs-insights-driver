@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.1.5](https://github.com/mashiike/cloudwatch-logs-insights-driver/compare/v0.1.4...v0.1.5) - 2023-09-17
+- allow log_group_names parameter string slice by @mashiike in https://github.com/mashiike/cloudwatch-logs-insights-driver/pull/30
+
 ## [v0.1.4](https://github.com/mashiike/cloudwatch-logs-insights-driver/compare/v0.1.3...v0.1.4) - 2023-09-17
 - fix config to string method, host can not set by @mashiike in https://github.com/mashiike/cloudwatch-logs-insights-driver/pull/28
 
